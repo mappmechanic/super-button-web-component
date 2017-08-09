@@ -1,0 +1,25 @@
+<script>
+    // ES6 Classes to Define the new Element Behaviour
+    class SuperButton extends HTMLElement {
+        constructor() {
+            super();
+            console.log('New Super Button object has been instantiated.');
+        }
+
+        connectedCallback() {
+            this.textContent = this.labelText;
+        }
+
+        get labelText() {
+            return this.getAttribute('label-text');
+        }
+
+        set labelText(value) {
+            if(value) {
+                this.setAttribute('label-text', value);
+            }
+        }
+    }
+
+    window.customElements.define('super-button', SuperButton);
+</script>

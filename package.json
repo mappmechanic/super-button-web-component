@@ -1,0 +1,17 @@
+{
+  "name": "supper-button",
+  "version": "1.0.0",
+  "description": "Web Component for a standard super button, one button fits all requirements",
+  "main": "super-button.html",
+  "peerDependencies": {
+    "webcomponentjs": "^0.7.24"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mappmechanic",
+  "license": "MIT",
+  "dependencies": {
+    "webcomponents.js": "^0.7.24"
+  }
+}
