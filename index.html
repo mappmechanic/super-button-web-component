@@ -4,8 +4,37 @@
         <title>Testing - Web Components</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.7/webcomponents-lite.js"></script>
         <link rel="import" href="./super-button.html">
+        <script>
+            function updateBtn1Label() {
+                const newLabel = document.getElementById('newLabel').value;
+                const superBtns = document.getElementsByTagName('super-button');
+                superBtns[0].setAttribute('label-text', newLabel);
+            };
+
+            function updateBtn2Color() {
+                const newColor = document.getElementById('newColor').value;
+                const superBtns = document.getElementsByTagName('super-button');
+                superBtns[1].setAttribute('color', newColor);
+            };
+        </script>
     </head>
     <body>
-       Button: <super-button label-text="Super Button1"></super-button> <br />
+       Button1: <super-button label-text="Super Button1" color="red"></super-button> <br />
+       Button2: <super-button label-text="Super Button2"></super-button>
+       <br /><br />
+        Update Button1 Label <br />
+        <input type="text" id="newLabel"><br />
+        <button onclick="updateBtn1Label()">Update Label</button>
+
+       <br /><br />
+       New Color <br />
+       <select id="newColor">
+            <option value="">Default</option>
+            <option value="red">Red</option>
+            <option value="yellow">Yellow</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+       </select> <br />
+       <button onclick="updateBtn2Color()">Update Color</button>
     </body>
 </html>

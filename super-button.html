@@ -7,7 +7,71 @@
         }
 
         connectedCallback() {
-            this.textContent = this.labelText;
+            this.innerHTML = `
+            <div class="button">
+                ${this.labelText}
+            </div>
+            <style>
+                .button { 
+                    width: 150px; 
+                    cursor: pointer;
+                    border-radius: 10px; 
+                    text-align: center; 
+                    padding: 5px; 
+                    border: 1px solid #999;
+                    box-shadow: 0px 4px 2px -2px;
+                }
+                .grey { background: #e5e5e5 }
+                .red { background: #ea5e4c }
+                .yellow { background: #ffc60e }
+                .blue { background: #93cefc }
+            </style>
+            `;
+            this.updateColor(this.color);
+        }
+
+        disconnectedCallback() {
+            // Disconnected means unmounting of the component
+            console.log('Disconnected callback hook for any book keeping');
+        }
+
+        get color() {
+            return this.getAttribute('color');
+        }
+
+        set color(value) {
+            this.setAttribute('color', newColor);
+        }
+
+        updateColor(newValue, oldValue) {
+            const defaultColor = 'grey';
+            const allowedColors = ['red','yellow','blue'];
+            const newColor = allowedColors.indexOf(newValue) > -1 ? newValue : defaultColor;
+            const btnContainer = this.querySelector('.button');
+            if(btnContainer && oldValue) {
+                btnContainer.classList.remove(oldValue);
+            }
+            if(btnContainer && newColor) {
+                btnContainer.classList.add(newColor);
+            }
+        }
+
+        static get observedAttributes() {
+            return ['label-text', 'color'];
+        }
+
+        // Called for LabelText & Color Attribute
+        attributeChangedCallback(name, oldValue, newValue) {
+            switch(name) {
+                case 'label-text': 
+                        if(this.querySelector('.button') && newValue) {
+                            this.querySelector('.button').textContent = newValue;
+                        }
+                    break;
+                case 'color': 
+                        this.updateColor(newValue, oldValue);
+                    break;
+            }
         }
 
         get labelText() {

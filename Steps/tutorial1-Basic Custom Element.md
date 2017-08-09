@@ -1,4 +1,4 @@
-## Creating Simple Web Component
+## Creating Simple Custom Element
 
 ### Step 1:
 Create a Simple **super-button.html** file to hold the definition of our new web component.
@@ -37,7 +37,7 @@ Link for using minimal node web server [**http-server**](https://www.npmjs.com/p
 
 You can verify the creation of the instance of a button by seeing the console log.
 
-![Console Log](http://imgur.com/a/aQXFC)
+![Console Log](https://i.imgur.com/5vAvAvE.png)
 
 
 ### Step 3:
