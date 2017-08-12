@@ -4,6 +4,19 @@
         <title>Testing - Web Components</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.7/webcomponents-lite.js"></script>
         <link rel="import" href="./super-button.html">
+        <style>
+            body {
+                color: #999;
+            }
+
+            .button {
+                font-size: 30px;
+            }
+
+            super-button {
+                --border-color: maroon;
+            }
+        </style>
         <script>
             function updateBtn1Label() {
                 const newLabel = document.getElementById('newLabel').value;

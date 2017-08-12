@@ -4,10 +4,10 @@
         constructor() {
             super();
             console.log('New Super Button object has been instantiated.');
-        }
 
-        connectedCallback() {
-            this.innerHTML = `
+            // Attach a shadow root to <super-button>.
+            const shadowRoot = this.attachShadow({mode: 'open'});
+            shadowRoot.innerHTML = `
             <div class="button">
                 ${this.labelText}
             </div>
@@ -25,8 +25,24 @@
                 .red { background: #ea5e4c }
                 .yellow { background: #ffc60e }
                 .blue { background: #93cefc }
+
+                :host {
+                    display: inline-block;
+                    color: #000;
+                }
+
+                :host([color=red]) {
+                    margin-bottom:20px;
+                }
+
+                :host([color=red]) .button {
+                    border-color: var(--border-color)
+                }
             </style>
             `;
+        }
+
+        connectedCallback() {
             this.updateColor(this.color);
         }
 
@@ -47,7 +63,7 @@
             const defaultColor = 'grey';
             const allowedColors = ['red','yellow','blue'];
             const newColor = allowedColors.indexOf(newValue) > -1 ? newValue : defaultColor;
-            const btnContainer = this.querySelector('.button');
+            const btnContainer = this.shadowRoot.querySelector('.button');
             if(btnContainer && oldValue) {
                 btnContainer.classList.remove(oldValue);
             }
@@ -64,8 +80,8 @@
         attributeChangedCallback(name, oldValue, newValue) {
             switch(name) {
                 case 'label-text': 
-                        if(this.querySelector('.button') && newValue) {
-                            this.querySelector('.button').textContent = newValue;
+                        if(this.shadowRoot.querySelector('.button') && newValue) {
+                            this.shadowRoot.querySelector('.button').textContent = newValue;
                         }
                     break;
                 case 'color': 
