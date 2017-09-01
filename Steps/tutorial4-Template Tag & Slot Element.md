@@ -2,7 +2,7 @@
 
 ### Step 1:
 
-Now firstly we will move all the HTML code and the CSS style code into a new **<template />** tag, which was initially passed to the innerHTML property of the shadowRoot object.
+Now firstly we will move all the HTML code and the CSS style code into a new ```<template>``` tag, which was initially passed to the innerHTML property of the shadowRoot object.
 
 Add the following code to the beginning of the **super-button.html** file:
 
@@ -80,7 +80,7 @@ Also, modify the constructor of the ES6 class and update it with the following c
 
 Add a new slot to show how light dom is rendered using HTMLSlotElement.
 
-In the template HTML, we have to add a new element wrapping the button label and also add a new **<slot />** element next to it:
+In the template HTML, we have to add a new element wrapping the button label and also add a new ```<slot />``` element next to it:
 
 ```html
 <template id="superBtnTemplate">
