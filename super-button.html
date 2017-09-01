@@ -1,6 +1,6 @@
 <template id="superBtnTemplate">
     <div class="button">
-     ${this.labelText}
+      <slot name="icon"></slot> <span class="btnText"> ${this.labelText} </span> <slot></slot>
     </div>
     <style>
         .button { 
@@ -85,7 +85,7 @@
                 case 'label-text': 
                         if(this.shadowRoot.querySelector('.button') && newValue) {
                             // Updating the content inside div with 'button' class
-                            this.shadowRoot.querySelector('.button').textContent = newValue;
+                            this.shadowRoot.querySelector('.btnText').textContent = newValue;
                         }
                     break;
                 case 'color': 
