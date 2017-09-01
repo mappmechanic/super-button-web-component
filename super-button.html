@@ -1,4 +1,38 @@
+<template id="superBtnTemplate">
+    <div class="button">
+     ${this.labelText}
+    </div>
+    <style>
+        .button { 
+            width: 150px; 
+            cursor: pointer;
+            border-radius: 10px; 
+            text-align: center; 
+            padding: 5px; 
+            border: 1px solid #999;
+            box-shadow: 0px 4px 2px -2px;
+        }
+        .grey { background: #e5e5e5 }
+        .red { background: #ea5e4c }
+        .yellow { background: #ffc60e }
+        .blue { background: #93cefc }
+
+        :host {
+            display: inline-block;
+            color: #000;
+        }
+
+        :host([color=red]) {
+            margin-bottom:20px;
+        }
+
+        :host([color=red]) .button {
+            border-color: var(--border-color)
+        }
+    </style>
+</template>
 <script>
+    var importDoc = document.currentScript.ownerDocument;
     // ES6 Classes to Define the new Element Behaviour
     class SuperButton extends HTMLElement {
         constructor() {
@@ -7,39 +41,8 @@
 
             // Attach a shadow root to <super-button>.
             const shadowRoot = this.attachShadow({mode: 'open'});
-            shadowRoot.innerHTML = `
-            <div class="button">
-                ${this.labelText}
-            </div>
-            <style>
-                .button { 
-                    width: 150px; 
-                    cursor: pointer;
-                    border-radius: 10px; 
-                    text-align: center; 
-                    padding: 5px; 
-                    border: 1px solid #999;
-                    box-shadow: 0px 4px 2px -2px;
-                }
-                .grey { background: #e5e5e5 }
-                .red { background: #ea5e4c }
-                .yellow { background: #ffc60e }
-                .blue { background: #93cefc }
-
-                :host {
-                    display: inline-block;
-                    color: #000;
-                }
-
-                :host([color=red]) {
-                    margin-bottom:20px;
-                }
-
-                :host([color=red]) .button {
-                    border-color: var(--border-color)
-                }
-            </style>
-            `;
+            const htmlTemplate = importDoc.querySelector('template');
+            shadowRoot.innerHTML = htmlTemplate.innerHTML;
         }
 
         connectedCallback() {
@@ -81,6 +84,7 @@
             switch(name) {
                 case 'label-text': 
                         if(this.shadowRoot.querySelector('.button') && newValue) {
+                            // Updating the content inside div with 'button' class
                             this.shadowRoot.querySelector('.button').textContent = newValue;
                         }
                     break;
