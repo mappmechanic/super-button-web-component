@@ -121,6 +121,13 @@ Now we will test multiple slots in a web component by adding a new **slot** elem
 Also now, in order to render something into the icon slot, we have to add an image and put the property **slot="image"**. Modify the code in the file **index.html** as below:
 
 ```html
+<style>
+...
+.icon {
+        float: left;
+        width: 30px;
+    }
+</style>
 ...
 <body>
         Button1: <super-button label-text="Super Button1" color="red">
