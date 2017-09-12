@@ -15,3 +15,13 @@ In the initial version of this tutorial, I have included very easy to follow ste
 ### Tutorial 4 - Template Tag & Slot Element Test
 [Click Here to Go](https://github.com/mappmechanic/super-button-web-component/blob/master/Steps/tutorial4-Template%20Tag%20%26%20Slot%20Element.md)
 
+Now, the following tutorials are for Integrating your web components with Angular & React.
+
+For that, we have to host our web component to some CDN so that all framework consumer apps can reuse it.
+
+```html
+<script src="https://dl.dropbox.com/s/vpvxtmw715l5k38/super-button.js"></script>
+```
+
+### Tutorial 5 - Angular Integration of Super Button
+[Click Here to Go](https://github.com/mappmechanic/super-button-web-component/blob/master/Steps/tutorial5-AngularAppWithWebComponents.md)

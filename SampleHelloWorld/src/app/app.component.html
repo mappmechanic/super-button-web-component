@@ -1,0 +1,28 @@
+<div style="text-align:center">
+  <div>
+    <h3> Your Name </h3>
+    <input [(ngModel)]="superMan" />
+    <div class="btns">
+        <super-button
+          label-text="Start Flying"
+          [attr.color]="flyColor"
+          (onBtnClick)="toggleFlying(true)">
+            <img src="http://i.imgur.com/Js4qqR7.png" class="icon" slot="icon" />
+            <b>Superman</b>
+        </super-button>
+        <super-button
+          label-text="Stop Flying"
+          [attr.color]="stopColor"
+          (onBtnClick)="toggleFlying(false)">
+            <img src="http://i.imgur.com/Js4qqR7.png" class="icon" slot="icon" />
+            <b>Superman</b>
+        </super-button>
+    </div>
+    <h2>{{ superMan }} is <span *ngIf="!isSuperManFlying">not </span>flying.</h2>
+  </div>
+  <div
+    class="superman"
+    [ngClass]="{'superman_flying': isSuperManFlying }"
+    >
+  </div>
+</div>

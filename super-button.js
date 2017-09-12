@@ -1,0 +1,116 @@
+(function() {
+    const template = document.createElement('template');
+
+    template.innerHTML = `<div class="button">
+      <slot name="icon"></slot> <span class="btnText"> ${this.labelText} </span> <slot></slot>
+    </div>
+    <style>
+        .button {
+            width: 150px;
+            cursor: pointer;
+            border-radius: 10px;
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #999;
+            box-shadow: 0px 4px 2px -2px;
+        }
+        .grey { background: #e5e5e5 }
+        .red { background: #ea5e4c }
+        .yellow { background: #ffc60e }
+        .blue { background: #93cefc }
+
+        :host {
+            display: inline-block;
+            color: #000;
+        }
+
+        :host([color=red]) {
+            margin-bottom:20px;
+        }
+
+        :host([color=red]) .button {
+            border-color: var(--border-color)
+        }
+    </style>`;
+
+
+    var importDoc = document.currentScript.ownerDocument;
+    // ES6 Classes to Define the new Element Behaviour
+    class SuperButton extends HTMLElement {
+        constructor() {
+            super();
+            console.log('New Super Button object has been instantiated.');
+
+            this.addEventListener('click', this._handleBtnClick.bind(this));
+
+            // Attach a shadow root to <super-button>.
+            const shadowRoot = this.attachShadow({mode: 'open'});
+            shadowRoot.appendChild(template.content.cloneNode(true));
+        }
+
+        _handleBtnClick() {
+          this.dispatchEvent(new CustomEvent('onBtnClick'));
+        }
+
+        connectedCallback() {
+            this.updateColor(this.color);
+        }
+
+        disconnectedCallback() {
+            // Disconnected means unmounting of the component
+            console.log('Disconnected callback hook for any book keeping');
+        }
+
+        get color() {
+            return this.getAttribute('color');
+        }
+
+        set color(value) {
+            this.setAttribute('color', newColor);
+        }
+
+        updateColor(newValue, oldValue) {
+            const defaultColor = 'grey';
+            const allowedColors = ['red','yellow','blue'];
+            const newColor = allowedColors.indexOf(newValue) > -1 ? newValue : defaultColor;
+            const btnContainer = this.shadowRoot.querySelector('.button');
+            if(btnContainer && oldValue) {
+                btnContainer.classList.remove(oldValue);
+            }
+            if(btnContainer && newColor) {
+                btnContainer.classList.add(newColor);
+            }
+        }
+
+        static get observedAttributes() {
+            return ['label-text', 'color'];
+        }
+
+        // Called for LabelText & Color Attribute
+        attributeChangedCallback(name, oldValue, newValue) {
+            switch(name) {
+                case 'label-text':
+                        if(this.shadowRoot.querySelector('.button') && newValue) {
+                            // Updating the content inside div with 'button' class
+                            this.shadowRoot.querySelector('.btnText').textContent = newValue;
+                        }
+                    break;
+                case 'color':
+                        this.updateColor(newValue, oldValue);
+                    break;
+            }
+        }
+
+        get labelText() {
+            return this.getAttribute('label-text');
+        }
+
+        set labelText(value) {
+            if(value) {
+                this.setAttribute('label-text', value);
+            }
+        }
+    }
+
+        window.customElements.define('super-button', SuperButton);
+    })();
