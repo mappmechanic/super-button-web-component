@@ -25,3 +25,6 @@ For that, we have to host our web component to some CDN so that all framework co
 
 ### Tutorial 5 - Angular Integration of Super Button
 [Click Here to Go](https://github.com/mappmechanic/super-button-web-component/blob/master/Steps/tutorial5-AngularAppWithWebComponents.md)
+
+### Tutorial 6 - React Integration of Super Button 
+[Click Here to Go](https://github.com/mappmechanic/super-button-web-component/blob/master/Steps/tutorial6-ReactAppWithWebComponents.md)
